@@ -508,8 +508,6 @@ function quit (aForceQuit)
   var appStartup = Components.classes['@mozilla.org/toolkit/app-startup;1'].
     getService(Components.interfaces.nsIAppStartup);
 
-  // eAttemptQuit は XUL をそれぞれ閉じていくよう試みますが、セーブしていないデータがある場合 
-  // XUL window は終了のプロセスをキャンセルする事ができます。eForceQuit は何があっても終了するでしょう。
   var quitSeverity = aForceQuit ? Components.interfaces.nsIAppStartup.eForceQuit :
                                   Components.interfaces.nsIAppStartup.eAttemptQuit;
   appStartup.quit(quitSeverity);
