@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
-<?xml-stylesheet href="xulgear.css" type="text/css"?>
+<?xml-stylesheet href="chrome://xulgear/skin/skin.css" type="text/css"?>
 <!--<?xul-overlay href="styles.xul"?>-->
 <window persist="width height" id="root-window" onmouseup="var e = window.document.getElementById('element-tree');if(e.ondrag){e.ondrag=false}" width="1024" height="768" title="XUL Gear" onload="initWindow(event)" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" orient="horizontal">
 	<script src="xulgear_data.js"/>
