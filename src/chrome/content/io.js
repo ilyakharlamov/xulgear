@@ -15,7 +15,7 @@ function openXULFile() {
 	if (res == nsIFilePicker.returnOK) {
 		try {
 			dir = fp.file.parent.path;
-			this.document.title = "XULPIX: " +fp.file.leafName;
+			this.document.title = fp.file.leafName + " - XUL Gear";
 			openFile("file://"+fp.file.path);
 			filePath = fp.file.path;
 		} catch(e) {
@@ -269,7 +269,7 @@ function initTree() {
 function initialize() {
 	initTargetWindow();
 	initTree();
-	this.document.title = "XULPIX";
+	this.document.title = "XUL Gear";
 	var tree = document.getElementById('element-tree');
 	tree.target = getTargetDocument();//this.parent.targetWindow.document;
 	insertPI(createPI('xml-stylesheet', {href: "chrome://global/skin/", type:"text/css"}));
@@ -384,7 +384,7 @@ function saveXULFileAs() {
 			}
 			*/
 
-			this.document.title = "XULPIX: "+fp.file.leafName;
+			this.document.title = fp.file.leafName+" - XUL Gear";
 			return true;
 		} catch(e) {
 			alert(e);

@@ -38,15 +38,3 @@ checkbox {margin-bottom:0px;margin-top:0px; padding:0px;}
 .main-tab {
 	max-width: 150px;
 }
-#xulgear-toolbar-button {
-	list-style-image: url("chrome://xulgear/skin/Gears_Gray.svg");
-}
-
-#xulgear-status-bar-icon {
-	width: 83px;
-	margin: 0 5px;
-}
-
-.xulgear-selected {
-	outline: 2px solid red !important;
-}
