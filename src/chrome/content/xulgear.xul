@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xulgeartrans SYSTEM "chrome://xulgear/locale/translations.dtd">
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://xulgear/skin/skin.css" type="text/css"?>
+
 <!--<?xul-overlay href="styles.xul"?>-->
 <window persist="width height" id="root-window" onmouseup="var e = window.document.getElementById('element-tree');if(e.ondrag){e.ondrag=false}" width="1024" height="768" title="XUL Gear" onload="initWindow(event)" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" orient="horizontal">
 	<script src="xulgear_data.js"/>
@@ -22,6 +24,7 @@
 
 		<key id="undo" modifiers="accel" key="Z" oncommand="undo()" />
 		<key id="redo" modifiers="accel shift" key="Z" oncommand="redo()" />
+		<key id="delete" keycode="VK_DELETE" oncommand="deleteElement()" />
 	</keyset>
 	<popupset>
 		<menupopup id="clipmenu" >
@@ -31,11 +34,15 @@
 				</menupopup>
 			</menu>
 			<menuitem label="New TextNode" oncommand="createTexts('')" />
+			<menuseparator/>
 			<menuitem label="Up" oncommand="upElement()" />
 			<menuitem label="Down" oncommand="downElement()"/>
+			<menuseparator/>
 			<menuitem label="Cut" oncommand="cutElement()" key="cut"/>
 			<menuitem label="Copy" key="copy" oncommand="copyElements()" />
 			<menuitem label="Paste" key="paste" oncommand="pasteElements()"/>
+			<menuseparator/>
+			<menuitem label="&delete;" key="delete" oncommand="deleteElement()"/>
 		</menupopup>
 	</popupset>
 	

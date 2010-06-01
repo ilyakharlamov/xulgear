@@ -68,40 +68,26 @@ function selectPrevItem() {
 	var tree = document.getElementById('element-tree');
 	tree.view.selection.select(--tree.currentIndex);
 }
-function cutElement() {
-	copyElements();
+
+function deleteElement(){
 	var treeitems = getSelectedTreeitems();
 	if (treeitems.length == 0) {
 		return;
 	}
 	var tree = document.getElementById('element-tree');
 	var index = tree.view.getIndexOfItem(treeitems[0]);
-
 	var action = new Action(REMOVE, treeitems);
 	removeElements(action);
-	/*
-	var nextTreeitems = [];
-	var parents = [];
-	for (var i = 0; i < treeitems.length; i++) {
-		nextTreeitems[i] = treeitems[i].nextSibling;
-		parents[i] = treeitems[i].parentNode.parentNode;
-	}
-
-	for (var i=0; i< treeitems.length; i++) {
-		if (treeitems[i].target == getTargetDocument().documentElement) {
-			continue;
-		}
-		treeitems[i].parentNode.removeChild(treeitems[i]);
-		treeitems[i].target.parentNode.removeChild(treeitems[i].target);
-	}
-	*/
-
-	//undoHistory.push(action);//new Action(REMOVE, treeitems, parents, nextTreeitems));
 	addAction(action);
 	if (index > tree.view.rowCount - 1) {
 		index = tree.view.rowCount - 1;
 	}
 	tree.view.selection.select(index);
+}
+
+function cutElement() {
+	copyElements();
+        deleteElement();
 }
 
 function upElement() {
