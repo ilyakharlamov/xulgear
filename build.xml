@@ -49,7 +49,7 @@
 		</copy>
 
 
-		<unzip src="files/xulrunner-win32.zip" dest="${win32dir}"/>
+		<unzip src="xulrunner/xulrunner-win32.zip" dest="${win32dir}"/>
 
 		<copy file="${win32dir}/xulrunner/xulrunner-stub.exe"
 			tofile="${win32dir}/xulgear.exe"/>
