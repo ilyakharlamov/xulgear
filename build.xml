@@ -33,11 +33,19 @@
 			<fileset dir="src_xulrunner" includes="**/*"/>
 		</copy>
 
+		<zip destfile="${win32dir}/chrome/content.jar" >
+			<zipfileset dir="${src_dir}/chrome/content/" includes="*" />
+		</zip>
+		<!--
 		<copy todir="${win32dir}/chrome/content">
 			<fileset dir="${src_dir}/chrome/content" includes="*"/>
 		</copy>
+		-->
 		<copy todir="${win32dir}/skin">
-			<fileset dir="${src_dir}/skin" includes="*"/>
+			<fileset dir="${src_dir}/skin" includes="**/*"/>
+		</copy>
+		<copy todir="${win32dir}/chrome/locale">
+			<fileset dir="${src_dir}/locale" includes="**/*"/>
 		</copy>
 
 
