@@ -1,24 +1,45 @@
 <?xml version="1.0" ?>
-<project name="xulgear" default="createDistributionXPI">
+<project name="xulgear" default="all">
 <property name="src_dir" location="./src" />
 <property name="build_dir" location="./build" />
 <property name="dist_dir" location="./dist" />
 <property file="version.number"/>
 
 <!-- Targets -->
+
+<target name="all"
+depends="createDistributionXPI, xulgear_xulrunner_win32"/>
+
 <target name="dir.check">
-	<mkdir dir="${build_dir}" />
-	<mkdir dir="${dist_dir}" />
+<mkdir dir="${build_dir}" />
+<mkdir dir="${dist_dir}" />
 </target>
 
 <target name="createDistributionXPI" depends="dir.check">
-	<zip destfile="./dist/${ant.project.name}_${version.number}.xpi" update="true">
-		<zipfileset dir="${src_dir}/chrome" includes="**/*" prefix="chrome" />
-		<zipfileset dir="${src_dir}/defaults" includes="**/*" prefix="defaults" />
-		<zipfileset dir="${src_dir}/locale" includes="**/*" prefix="locale" />
-		<zipfileset dir="${src_dir}/skin" includes="**/*" prefix="skin" />
-		<zipfileset dir="${src_dir}" includes="install.rdf" />
-		<zipfileset dir="${src_dir}" includes="chrome.manifest" />
-	</zip>
+<zip destfile="./dist/${ant.project.name}_${version.number}.xpi" update="true">
+<zipfileset dir="${src_dir}/chrome" includes="**/*" prefix="chrome" />
+<zipfileset dir="${src_dir}/defaults" includes="**/*" prefix="defaults" />
+<zipfileset dir="${src_dir}/locale" includes="**/*" prefix="locale" />
+<zipfileset dir="${src_dir}/skin" includes="**/*" prefix="skin" />
+<zipfileset dir="${src_dir}" includes="install.rdf" />
+<zipfileset dir="${src_dir}" includes="chrome.manifest" />
+</zip>
+</target>
+
+<target name="xulgear_xulrunner_win32">
+<property name="win32dir" location="${build_dir}/xulgear_win32"/>
+<mkdir dir="${win32dir}"/>
+
+<copy todir="${win32dir}/chrome/content">
+<fileset dir="${src_dir}/chrome/content" includes="*"/>
+</copy>
+<copy todir="${win32dir}/skin">
+<fileset dir="${src_dir}/skin" includes="*"/>
+</copy>
+
+<unzip src="files/xulrunner-win32.zip" dest="${win32dir}"/>
+
+<zip destfile="${dist_dir}/xulgear_win32.zip" basedir="${win32dir}"/>
 </target>
 </project> 
+
