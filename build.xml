@@ -2,6 +2,7 @@
 <project name="xulgear" default="all">
 	<property name="src_dir" location="./src" />
 	<property name="build_dir" location="./build" />
+	<property name="win32dir" location="${build_dir}/xulgear_win32"/>
 	<property name="dist_dir" location="./dist" />
 	<property file="version.number"/>
 
@@ -25,8 +26,12 @@
 		</zip>
 	</target>
 
-	<target name="xulgear_xulrunner_win32">
-		<property name="win32dir" location="${build_dir}/xulgear_win32"/>
+	<target name="zip.xulrunner" depends="xulgear_xulrunner_win32">
+		<zip destfile="${dist_dir}/xulgear_win32.zip" basedir="${win32dir}"/>
+	</target>
+
+	<target name="xulgear_xulrunner_win32" depends="dir.check">
+		
 		<mkdir dir="${win32dir}"/>
 
 		<copy todir="${win32dir}">
@@ -36,11 +41,7 @@
 		<zip destfile="${win32dir}/chrome/content.jar" >
 			<zipfileset dir="${src_dir}/chrome/content/" includes="*" />
 		</zip>
-		<!--
-		<copy todir="${win32dir}/chrome/content">
-			<fileset dir="${src_dir}/chrome/content" includes="*"/>
-		</copy>
-		-->
+
 		<copy todir="${win32dir}/skin">
 			<fileset dir="${src_dir}/skin" includes="**/*"/>
 		</copy>
@@ -49,12 +50,13 @@
 		</copy>
 
 
-		<unzip src="xulrunner/xulrunner-win32.zip" dest="${win32dir}"/>
+		<!--
+		<unzip src="xulrunner/xulrunner-1.9.2.10.en-US.win32.zip" dest="${win32dir}"/>
+		-->
 
 		<copy file="${win32dir}/xulrunner/xulrunner-stub.exe"
 			tofile="${win32dir}/xulgear.exe"/>
 
-		<zip destfile="${dist_dir}/xulgear_win32.zip" basedir="${win32dir}"/>
 	</target>
 </project> 
 
