@@ -45,6 +45,7 @@ function initWindow(event) {
 	createEventsBox(w.target);
 	createStylesBox();
 
+
 	initContextMenu();
 	initNewElement();
 

@@ -5,6 +5,9 @@
 
 <!--<?xul-overlay href="styles.xul"?>-->
 <window persist="width height" id="root-window" onmouseup="var e = window.document.getElementById('element-tree');if(e.ondrag){e.ondrag=false}" width="1024" height="768" title="XUL Gear" onload="initWindow(event)" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" orient="horizontal">
+
+	<script src="json2.js"/>
+	<script src="project.js"/>
 	<script src="xulgear_data.js"/>
 	<script src="io.js"/>
 	<script src="move.js"/>
