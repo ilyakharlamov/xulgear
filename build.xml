@@ -6,9 +6,11 @@
 	<property name="dist_dir" location="./dist" />
 	<property file="version.number"/>
 
+
+
 	<!-- Targets -->
 
-	<target name="all" depends="createDistributionXPI, xulgear_xulrunner_win32"/>
+	<target name="all" depends="createDistributionXPI, createZips"/>
 
 	<target name="dir.check">
 		<mkdir dir="${build_dir}" />
@@ -26,12 +28,21 @@
 		</zip>
 	</target>
 
-	<target name="zip.xulrunner" depends="xulgear_xulrunner_win32">
+	<target name="createZips" depends="xulgear_xulrunner_win32">
 		<zip destfile="${dist_dir}/xulgear_win32.zip" basedir="${win32dir}"/>
 	</target>
 
+	<condition property="nothave.xulrunnerFolder">
+		<not>
+			<available file="${win32dir}/xulrunner"/>
+		</not>
+	</condition>
+
+	<target name="copyXULRunner" if="nothave.xulrunnerFolder">
+		<unzip  src="xulrunner/xulrunner-1.9.2.10.en-US.win32.zip" dest="${win32dir}"/>
+	</target>
+
 	<target name="xulgear_xulrunner_win32" depends="dir.check">
-		
 		<mkdir dir="${win32dir}"/>
 
 		<copy todir="${win32dir}">
@@ -49,10 +60,9 @@
 			<fileset dir="${src_dir}/locale" includes="**/*"/>
 		</copy>
 
+		<antcall target="copyXULRunner"/>
 
-		<!--
-		<unzip src="xulrunner/xulrunner-1.9.2.10.en-US.win32.zip" dest="${win32dir}"/>
-		-->
+		
 
 		<copy file="${win32dir}/xulrunner/xulrunner-stub.exe"
 			tofile="${win32dir}/xulgear.exe"/>
