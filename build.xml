@@ -39,7 +39,7 @@
 	</condition>
 
 	<target name="copyXULRunner" if="nothave.xulrunnerFolder">
-		<unzip  src="xulrunner/xulrunner-1.9.2.10.en-US.win32.zip" dest="${win32dir}"/>
+		<unzip  src="xulrunner/xulrunner-1.9.1.13.en-US.win32.zip" dest="${win32dir}"/>
 	</target>
 
 	<target name="xulgear_xulrunner_win32" depends="dir.check">
